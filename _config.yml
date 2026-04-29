@@ -56,6 +56,15 @@ search:
   content: true
   format: html
 
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  content: true
+  content_limit: false
+  order_by: -date
+  icon: /images/pixel-cat.svg
+
 theme_config:
   colorscheme: dark
   nav:
