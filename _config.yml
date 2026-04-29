@@ -75,7 +75,7 @@ theme_config:
       link: https://www.youtube.com/@PixelCatICU
     -
       label: GitHub
-      link: https://github.com/
+      link: https://github.com/PixelCatICU
     -
       label: RSS
       link: /atom.xml
