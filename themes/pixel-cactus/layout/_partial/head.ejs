@@ -42,5 +42,13 @@
   <% if (isPost && page.updated) { %>
     <meta property="article:modified_time" content="<%= date_xml(page.updated) %>">
   <% } %>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-948R99SH8B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-948R99SH8B');
+  </script>
   <link rel="stylesheet" href="<%- url_for('/css/style.css') %>">
 </head>
