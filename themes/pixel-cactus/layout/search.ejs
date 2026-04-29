@@ -1,0 +1,98 @@
+<section class="section">
+  <h1>搜索</h1>
+  <div class="search-box">
+    <input id="search-input" type="search" placeholder="输入关键词，例如 DNS、节点、延迟" autocomplete="off">
+  </div>
+  <p id="search-status" class="search-status">正在加载搜索索引...</p>
+  <ul id="search-results" class="post-list"></ul>
+</section>
+<script>
+  (() => {
+    const input = document.getElementById('search-input');
+    const results = document.getElementById('search-results');
+    const status = document.getElementById('search-status');
+    let entries = [];
+    let loaded = false;
+
+    const getText = (node, selector) => {
+      const target = node.querySelector(selector);
+      return target ? target.textContent.trim() : '';
+    };
+
+    const stripHtml = (html) => {
+      const div = document.createElement('div');
+      div.innerHTML = html;
+      return div.textContent || div.innerText || '';
+    };
+
+    const render = () => {
+      const keyword = input.value.trim().toLowerCase();
+      results.innerHTML = '';
+
+      if (!loaded) {
+        status.textContent = '正在加载搜索索引...';
+        return;
+      }
+
+      if (!keyword) {
+        status.textContent = '输入关键词开始搜索。';
+        return;
+      }
+
+      const matched = entries
+        .filter((entry) => entry.searchText.includes(keyword))
+        .slice(0, 20);
+
+      if (!matched.length) {
+        status.textContent = '没有找到相关文章。';
+        return;
+      }
+
+      status.textContent = `找到 ${matched.length} 篇相关文章`;
+      matched.forEach((entry) => {
+        const li = document.createElement('li');
+        const time = document.createElement('time');
+        const a = document.createElement('a');
+        time.textContent = entry.tags;
+        a.href = entry.url;
+        a.textContent = entry.title;
+        li.appendChild(time);
+        li.appendChild(a);
+        results.appendChild(li);
+      });
+    };
+
+    input.addEventListener('input', render);
+
+    fetch('<%- url_for("/search.xml") %>', { cache: 'no-store' })
+      .then((response) => {
+        if (!response.ok) throw new Error('Search index request failed');
+        return response.text();
+      })
+      .then((xmlText) => {
+        const xml = new DOMParser().parseFromString(xmlText, 'text/xml');
+        entries = Array.from(xml.querySelectorAll('entry')).map((entry) => {
+          const tags = Array.from(entry.querySelectorAll('tag'))
+            .map((tag) => tag.textContent.trim())
+            .filter(Boolean)
+            .join(' / ');
+          const title = getText(entry, 'title');
+          const url = getText(entry, 'url') || entry.querySelector('link')?.getAttribute('href') || '#';
+          const content = stripHtml(getText(entry, 'content'));
+          return {
+            title,
+            url,
+            tags,
+            searchText: `${title} ${tags} ${content}`.toLowerCase()
+          };
+        });
+        loaded = true;
+        render();
+      })
+      .catch(() => {
+        loaded = true;
+        entries = [];
+        status.textContent = '搜索索引加载失败，请刷新页面重试。';
+      });
+  })();
+</script>

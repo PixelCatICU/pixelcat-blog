@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="<%= config.language || 'zh-CN' %>">
+<%- partial('_partial/head') %>
+<body class="<%= theme.colorscheme || 'dark' %>">
+  <script>
+    (() => {
+      const savedTheme = localStorage.getItem('pixelcat-theme');
+      if (savedTheme === 'dark' || savedTheme === 'light') {
+        document.body.className = savedTheme;
+      }
+    })();
+  </script>
+  <main class="container">
+    <%- partial('_partial/header') %>
+    <%- body %>
+    <%- partial('_partial/footer') %>
+  </main>
+  <script>
+    (() => {
+      const button = document.querySelector('[data-theme-toggle]');
+      if (!button) return;
+
+      const updateButton = () => {
+        const isLight = document.body.classList.contains('light');
+        button.textContent = isLight ? 'Dark' : 'Light';
+        button.setAttribute('aria-label', isLight ? '切换到深色主题' : '切换到浅色主题');
+      };
+
+      button.addEventListener('click', () => {
+        const nextTheme = document.body.classList.contains('light') ? 'dark' : 'light';
+        document.body.className = nextTheme;
+        localStorage.setItem('pixelcat-theme', nextTheme);
+        updateButton();
+      });
+
+      updateButton();
+    })();
+  </script>
+</body>
+</html>

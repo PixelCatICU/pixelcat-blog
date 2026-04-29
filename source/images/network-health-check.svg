@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">节点体检清单示意图</title>
+  <desc id="desc">像素风仪表盘展示延迟、丢包、DNS 和可访问性四项网络指标。</desc>
+  <rect width="960" height="540" fill="#101112"/>
+  <rect x="48" y="48" width="864" height="444" fill="#191b1f" stroke="#2a2d31" stroke-width="4"/>
+  <text x="80" y="112" fill="#f4f4f4" font-family="monospace" font-size="42" font-weight="700">PixelCat ICU / Node Check</text>
+  <text x="80" y="154" fill="#8b949e" font-family="monospace" font-size="22">Ping · Packet Loss · DNS · Reachability</text>
+  <g font-family="monospace" font-weight="700">
+    <rect x="80" y="202" width="360" height="92" fill="#101112" stroke="#7bd88f" stroke-width="3"/>
+    <text x="108" y="242" fill="#7bd88f" font-size="26">Latency</text>
+    <text x="108" y="276" fill="#f4f4f4" font-size="30">86 ms</text>
+    <rect x="520" y="202" width="360" height="92" fill="#101112" stroke="#ffcf6e" stroke-width="3"/>
+    <text x="548" y="242" fill="#ffcf6e" font-size="26">Packet Loss</text>
+    <text x="548" y="276" fill="#f4f4f4" font-size="30">0.3%</text>
+    <rect x="80" y="334" width="360" height="92" fill="#101112" stroke="#7bd88f" stroke-width="3"/>
+    <text x="108" y="374" fill="#7bd88f" font-size="26">DNS Exit</text>
+    <text x="108" y="408" fill="#f4f4f4" font-size="30">Remote OK</text>
+    <rect x="520" y="334" width="360" height="92" fill="#101112" stroke="#7bd88f" stroke-width="3"/>
+    <text x="548" y="374" fill="#7bd88f" font-size="26">Access</text>
+    <text x="548" y="408" fill="#f4f4f4" font-size="30">4 / 4 PASS</text>
+  </g>
+  <rect x="812" y="82" width="16" height="16" fill="#7bd88f"/>
+  <rect x="860" y="82" width="16" height="16" fill="#7bd88f"/>
+  <rect x="812" y="98" width="64" height="48" fill="#d7d7d7"/>
+  <rect x="828" y="114" width="12" height="12" fill="#101112"/>
+  <rect x="856" y="114" width="12" height="12" fill="#101112"/>
+  <rect x="842" y="134" width="8" height="8" fill="#ff6b8a"/>
+</svg>
