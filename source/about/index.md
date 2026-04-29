@@ -14,5 +14,5 @@ date: 2026-04-29 09:00:00
 ## 频道入口
 
 - [YouTube 订阅](https://www.youtube.com/@PixelCatICU)
-- [GitHub地址](https://github.com/PixelCatICU)
+- [GitHub 地址](https://github.com/PixelCatICU)
 - [X（前身为Twitter）](https://x.com/PixelCatICU)
