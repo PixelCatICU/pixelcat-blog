@@ -1,0 +1,85 @@
+title: 像素猫 - 科学上网ICU
+subtitle: 网络急救、隐私自护与跨境访问笔记
+description: 一个中文教程博客，整理科学上网、网络诊断、节点维护与隐私安全的实用经验。
+keywords: 科学上网, 网络诊断, 代理, 隐私安全, 像素猫
+author: PixelCat ICU
+language: zh-CN
+timezone: Asia/Shanghai
+
+url: http://localhost:4000
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+new_post_name: :title.md
+default_layout: post
+titlecase: false
+external_link:
+  enable: true
+  field: site
+  exclude: ''
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+syntax_highlighter: highlight.js
+highlight:
+  line_number: true
+  auto_detect: false
+  tab_replace: ''
+  wrap: true
+  hljs: false
+
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -date
+
+per_page: 10
+pagination_dir: page
+
+theme: pixel-cactus
+
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html
+
+theme_config:
+  colorscheme: dark
+  nav:
+    首页: /
+    归档: /archives/
+    标签: /tags/
+    搜索: /search/
+    关于: /about/
+  profile:
+    avatar: /images/pixel-cat.svg
+    intro_lines:
+      - 这里是「像素猫 - 科学上网ICU」YouTube频道的博客 🐱
+      - 主要分享科学上网、网络工具、代理协议、服务器搭建、节点部署、路由分流、隐私安全和实用软件教程。🚀
+  social_links:
+    -
+      label: YouTube
+      link: https://www.youtube.com/@PixelCatICU
+    -
+      label: GitHub
+      link: https://github.com/
+    -
+      label: RSS
+      link: /atom.xml
+  posts_overview:
+    show_all_posts: true
+    post_count: 8
+  copyright: 2026 PixelCat ICU

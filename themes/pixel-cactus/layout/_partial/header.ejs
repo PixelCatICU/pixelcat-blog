@@ -1,0 +1,14 @@
+<header class="site-header">
+  <a class="brand" href="<%- url_for('/') %>" aria-label="<%= config.title %>">
+    <img src="<%- url_for(theme.profile.avatar) %>" alt="" class="brand-mark">
+    <span class="brand-text"><%= config.title %></span>
+  </a>
+  <div class="header-actions">
+    <nav class="site-nav" aria-label="主导航">
+      <% Object.keys(theme.nav || {}).forEach(function(name) { %>
+        <a href="<%- url_for(theme.nav[name]) %>"><%= name %></a>
+      <% }) %>
+    </nav>
+    <button class="theme-toggle" type="button" data-theme-toggle>Light</button>
+  </div>
+</header>

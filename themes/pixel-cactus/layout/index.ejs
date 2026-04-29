@@ -1,0 +1,48 @@
+<section class="hero">
+  <h1>PixelCat ICU</h1>
+  <div class="hero-intro">
+    <% if (theme.profile.intro_lines && theme.profile.intro_lines.length) { %>
+      <% theme.profile.intro_lines.forEach(function(line) { %>
+        <p><%= line %></p>
+      <% }) %>
+    <% } else if (theme.profile.intro) { %>
+      <p><%= theme.profile.intro %></p>
+    <% } %>
+  </div>
+  <% if (theme.profile.links && theme.profile.links.length) { %>
+    <div class="hero-links">
+      <% theme.profile.links.forEach(function(item) { %>
+        <a href="<%- item.url %>"><%= item.label %></a>
+      <% }) %>
+    </div>
+  <% } %>
+</section>
+
+<section class="section">
+  <h2>最新文章</h2>
+  <ul class="post-list">
+    <%
+      var limit = theme.posts_overview && theme.posts_overview.show_all_posts ? site.posts.length : ((theme.posts_overview && theme.posts_overview.post_count) || 5);
+      site.posts.sort('date', -1).limit(limit).forEach(function(post) {
+    %>
+      <li>
+        <time datetime="<%= date_xml(post.date) %>"><%= date(post.date, 'YYYY-MM-DD') %></time>
+        <a href="<%- url_for(post.path) %>"><%= post.title %></a>
+      </li>
+    <% }) %>
+  </ul>
+</section>
+
+<% if (site.data && site.data.projects) { %>
+  <section class="section">
+    <h2>精选专题</h2>
+    <ul class="project-list">
+      <% site.data.projects.forEach(function(project) { %>
+        <li>
+          <a href="<%- project.url %>"><%= project.name %>:</a>
+          <span><%= project.desc %></span>
+        </li>
+      <% }) %>
+    </ul>
+  </section>
+<% } %>

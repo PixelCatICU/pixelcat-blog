@@ -1,0 +1,11 @@
+<section class="section">
+  <h1><%= page.title || '归档' %></h1>
+  <ul class="post-list">
+    <% page.posts.sort('date', -1).forEach(function(post) { %>
+      <li>
+        <time datetime="<%= date_xml(post.date) %>"><%= date(post.date, 'YYYY-MM-DD') %></time>
+        <a href="<%- url_for(post.path) %>"><%= post.title %></a>
+      </li>
+    <% }) %>
+  </ul>
+</section>

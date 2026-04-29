@@ -1,0 +1,8 @@
+<footer class="site-footer">
+  <div class="socials">
+    <% (theme.social_links || []).forEach(function(item) { %>
+      <a href="<%- item.link %>"><%= item.label %></a>
+    <% }) %>
+  </div>
+  <p>Copyright © <%= theme.copyright || config.author %></p>
+</footer>

@@ -1,0 +1,12 @@
+colorscheme: dark
+nav:
+  首页: /
+  归档: /archives/
+profile:
+  avatar: /images/pixel-cat.svg
+  intro: 像素猫网络急救站。
+social_links: []
+posts_overview:
+  show_all_posts: true
+  post_count: 8
+copyright: PixelCat ICU
