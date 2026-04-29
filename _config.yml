@@ -86,6 +86,9 @@ theme_config:
       label: GitHub
       link: https://github.com/PixelCatICU
     -
+      label: X
+      link: https://x.com/PixelCatICU
+    -
       label: RSS
       link: /atom.xml
   posts_overview:
