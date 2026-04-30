@@ -1,17 +1,17 @@
 [
   {
     "name": "节点体检清单",
-    "url": "/2026/04/26/node-health-checklist/",
+    "url": "/posts/node-health-checklist/",
     "desc": "用延迟、丢包、DNS 泄漏和可访问性四项指标判断线路是否可靠。"
   },
   {
     "name": "家庭网络急救包",
-    "url": "/2026/04/24/home-network-icu-kit/",
+    "url": "/posts/home-network-icu-kit/",
     "desc": "路由器、客户端、浏览器三层排查模板，适合新手复盘问题。"
   },
   {
     "name": "隐私配置速查",
-    "url": "/2026/04/22/privacy-quick-settings/",
+    "url": "/posts/privacy-quick-settings/",
     "desc": "把常见代理客户端的 DNS、分流、日志和更新策略整理成一页表。"
   }
 ]

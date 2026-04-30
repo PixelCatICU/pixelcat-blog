@@ -6,9 +6,9 @@ author: PixelCat ICU
 language: zh-CN
 timezone: Asia/Shanghai
 
-url: http://localhost:4000
+url: https://pixelcat.icu
 root: /
-permalink: :year/:month/:day/:title/
+permalink: posts/:title/
 permalink_defaults:
 
 source_dir: source
