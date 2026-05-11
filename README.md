@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="source/images/pixel-cat.svg" alt="像素猫 Logo" width="160" />
+</p>
+
 # 像素猫 - 科学上网ICU
 
 「像素猫 - 科学上网ICU」YouTube 频道的中文教程博客，使用 Hexo 构建，主题为本项目内置的 `pixel-cactus`，风格参考 `hexo-theme-cactus` 的极简博客布局。
@@ -77,6 +81,7 @@ themes/pixel-cactus/source/    主题静态资源
 
 - YouTube: https://www.youtube.com/@PixelCatICU
 - GitHub: https://github.com/PixelCatICU
+- X: https://x.com/PixelCatICU
 - RSS: `/atom.xml`
 
 ## 说明
