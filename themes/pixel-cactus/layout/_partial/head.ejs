@@ -9,10 +9,60 @@
     var canonicalPath = rawPath.replace(/(^|\/)index\.html$/, '$1');
     if (!canonicalPath) canonicalPath = '/';
     var pageUrl = full_url_for(canonicalPath);
-    var siteImage = full_url_for('/images/pixel-cat-1024.png');
+    var siteImage = full_url_for('/images/pixel-cat.svg');
     var isPost = page.layout === 'post' || /^\d{4}\//.test(rawPath);
     var pageType = isPost ? 'article' : 'website';
     var keywords = config.keywords || '';
+    var schemaImage = full_url_for('/images/pixel-cat.svg');
+    var sameAs = [];
+    if (theme.social_links && theme.social_links.length) {
+      sameAs = theme.social_links
+        .map(function(item) { return item.link; })
+        .filter(function(link) { return /^https?:\/\//.test(link); });
+    }
+    var publisher = {
+      '@type': 'Organization',
+      name: config.author || siteTitle,
+      url: full_url_for('/'),
+      logo: {
+        '@type': 'ImageObject',
+        url: schemaImage
+      }
+    };
+    if (sameAs.length) publisher.sameAs = sameAs;
+    var schema = isPost ? {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': pageUrl
+      },
+      headline: page.title || siteTitle,
+      description: pageDescription,
+      image: schemaImage,
+      datePublished: page.date ? date_xml(page.date) : undefined,
+      dateModified: page.updated ? date_xml(page.updated) : (page.date ? date_xml(page.date) : undefined),
+      author: {
+        '@type': 'Person',
+        name: config.author || siteTitle
+      },
+      publisher: publisher,
+      keywords: Array.isArray(page.tags && page.tags.data) ? page.tags.data.map(function(tag) { return tag.name; }).join(', ') : keywords,
+      inLanguage: config.language || 'zh-CN',
+      url: pageUrl
+    } : {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: siteTitle,
+      alternateName: config.subtitle || siteTitle,
+      url: full_url_for('/'),
+      description: config.description,
+      inLanguage: config.language || 'zh-CN',
+      publisher: publisher
+    };
+    Object.keys(schema).forEach(function(key) {
+      if (schema[key] === undefined || schema[key] === '') delete schema[key];
+    });
   %>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,6 +74,7 @@
   <meta name="robots" content="index, follow">
   <title><%= pageTitle %></title>
   <link rel="canonical" href="<%- pageUrl %>">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="<%- full_url_for('/sitemap.xml') %>">
   <link rel="icon" href="<%- url_for('/images/pixel-cat.svg') %>" type="image/svg+xml">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:site_name" content="<%= siteTitle %>">
@@ -42,6 +93,7 @@
   <% if (isPost && page.updated) { %>
     <meta property="article:modified_time" content="<%= date_xml(page.updated) %>">
   <% } %>
+  <script type="application/ld+json"><%- JSON.stringify(schema) %></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-948R99SH8B"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
