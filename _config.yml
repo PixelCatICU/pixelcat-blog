@@ -1,7 +1,7 @@
-title: PixelCat Proxy 安装指南
-subtitle: ForwardProxy 与 Hysteria2 一键部署教程
-description: PixelCat Proxy 中文安装指南，整理服务器连接、域名解析、防火墙放行、ForwardProxy HTTPS 伪装、Hysteria2 端口跳跃、节点诊断工具和客户端配置步骤。
-keywords: PixelCat Proxy, ForwardProxy, Hysteria2, NaiveProxy, 端口跳跃, HTTPS伪装, IP质量检测, 流媒体解锁, 网络质量检测, 科学上网, 代理
+title: 像素猫 - 科学上网ICU
+subtitle: 网络急救、隐私自护与跨境访问笔记
+description: 一个中文教程博客，整理科学上网、网络诊断、节点维护与隐私安全的实用经验。
+keywords: 科学上网, 网络诊断, 代理, 隐私安全, 像素猫
 author: PixelCat ICU
 language: zh-CN
 timezone: Asia/Shanghai
@@ -93,8 +93,8 @@ theme_config:
   profile:
     avatar: /images/pixel-cat.svg
     intro_lines:
-      - PixelCat Proxy 一键部署教程：从连接服务器到客户端配置。
-      - 支持 ForwardProxy HTTPS 伪装、Hysteria2 QUIC/UDP 端口跳跃、BBR 和常用节点诊断工具。
+      - 这里是「像素猫 - 科学上网ICU」YouTube频道的博客 🐱
+      - 主要分享科学上网、网络工具、代理协议、服务器搭建、节点部署、路由分流、隐私安全和实用软件教程。🚀
   social_links:
     -
       label: YouTube
