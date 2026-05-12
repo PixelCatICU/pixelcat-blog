@@ -8,7 +8,7 @@
   --accent: #7bd88f;
   --accent-2: #ffcf6e;
   --code-bg: #191b1f;
-  --max: 960px;
+  --max: 1024px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Noto Sans SC", monospace;
 }
 
@@ -177,9 +177,13 @@ h2 {
 .post-list li,
 .project-list li {
   display: grid;
-  grid-template-columns: 116px 1fr;
   gap: 16px;
   padding: 8px 0;
+}
+
+.post-list li,
+.project-list li {
+  grid-template-columns: 260px 1fr;
 }
 
 .tag-cloud li {
@@ -231,11 +235,31 @@ time,
   margin-bottom: 30px;
 }
 
+.post-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.post-layout > .content {
+  min-width: 0;
+}
+
 .post-toc {
-  margin: 0 0 30px;
-  padding: 16px 18px;
+  margin: 0;
+  padding: 16px 18px 16px 28px;
   border: 1px solid var(--line);
   background: var(--code-bg);
+  position: sticky;
+  top: 24px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  font-size: 0.92rem;
+}
+
+.post-toc-toggle {
+  display: none;
 }
 
 .post-toc strong {
@@ -303,16 +327,99 @@ time,
 }
 
 .content pre {
-  overflow-x: auto;
   padding: 16px;
   background: var(--code-bg);
   border: 1px solid var(--line);
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .content pre code {
   padding: 0;
   background: transparent;
   color: inherit;
+  white-space: inherit;
+  word-break: inherit;
+}
+
+.content figure.highlight {
+  position: relative;
+  margin: 22px 0;
+  padding: 12px 14px;
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.content figure.highlight .code-copy {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  padding: 3px 10px;
+  font: inherit;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--muted);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.content figure.highlight:hover .code-copy,
+.content figure.highlight .code-copy:focus-visible {
+  opacity: 1;
+}
+
+.content figure.highlight .code-copy:hover {
+  color: var(--heading);
+  border-color: var(--accent);
+}
+
+.content figure.highlight .code-copy.is-copied {
+  color: var(--accent);
+  border-color: var(--accent);
+  opacity: 1;
+}
+
+.content table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+.content figure.highlight table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.content figure.highlight .gutter {
+  width: 2.4em;
+  padding-right: 12px;
+  color: var(--muted);
+  user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.content figure.highlight .code {
+  width: auto;
+}
+
+.content figure.highlight pre {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 blockquote {
@@ -367,5 +474,46 @@ blockquote {
   .project-list li {
     grid-template-columns: 1fr;
     gap: 0;
+  }
+
+  .post-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .post-toc-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    right: calc(max(24px, (100vw - var(--max)) / 2 + 24px) + env(safe-area-inset-right));
+    bottom: calc(24px + env(safe-area-inset-bottom));
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--code-bg);
+    color: var(--heading);
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 30;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  }
+
+  .post-toc {
+    position: fixed;
+    left: calc(max(20px, (100vw - var(--max)) / 2 + 20px) + env(safe-area-inset-left));
+    right: calc(max(20px, (100vw - var(--max)) / 2 + 20px) + env(safe-area-inset-right));
+    bottom: calc(92px + env(safe-area-inset-bottom));
+    top: auto;
+    max-height: 60vh;
+    z-index: 29;
+    display: none;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+  }
+
+  .post-toc.is-open {
+    display: block;
   }
 }

@@ -36,5 +36,60 @@
       updateButton();
     })();
   </script>
+  <script>
+    (() => {
+      const getCodeText = (fig) => {
+        const lines = fig.querySelectorAll('td.code .line');
+        if (lines.length) {
+          return Array.from(lines).map((l) => l.textContent).join('\n');
+        }
+        const codeCell = fig.querySelector('td.code') || fig;
+        return codeCell.textContent;
+      };
+
+      const fallbackCopy = (text) => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        let ok = false;
+        try { ok = document.execCommand('copy'); } catch (_) {}
+        document.body.removeChild(ta);
+        return ok;
+      };
+
+      document.querySelectorAll('figure.highlight').forEach((fig) => {
+        if (fig.querySelector(':scope > .code-copy')) return;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'code-copy';
+        btn.setAttribute('aria-label', '复制代码');
+        btn.textContent = '复制';
+        fig.appendChild(btn);
+
+        let resetTimer = 0;
+        btn.addEventListener('click', async () => {
+          const text = getCodeText(fig);
+          let ok = false;
+          try {
+            await navigator.clipboard.writeText(text);
+            ok = true;
+          } catch (_) {
+            ok = fallbackCopy(text);
+          }
+          btn.textContent = ok ? '已复制' : '失败';
+          btn.classList.toggle('is-copied', ok);
+          window.clearTimeout(resetTimer);
+          resetTimer = window.setTimeout(() => {
+            btn.textContent = '复制';
+            btn.classList.remove('is-copied');
+          }, 1500);
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

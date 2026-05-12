@@ -21,19 +21,43 @@
       return match;
     });
   %>
-  <% if (headings.length) { %>
-    <nav class="post-toc" aria-label="文章目录">
-      <strong>目录</strong>
-      <ol>
-        <% headings.forEach(function(heading) { %>
-          <li class="toc-level-<%= heading.level %>">
-            <a href="#<%- heading.id %>"><%= heading.title %></a>
-          </li>
-        <% }) %>
-      </ol>
-    </nav>
-  <% } %>
-  <div class="content">
-    <%- page.content %>
+  <div class="post-layout">
+    <% if (headings.length) { %>
+      <button class="post-toc-toggle" type="button" aria-controls="post-toc-panel" aria-expanded="false" aria-label="打开目录">
+        <span aria-hidden="true">≡</span>
+      </button>
+      <nav id="post-toc-panel" class="post-toc" aria-label="文章目录">
+        <strong>目录</strong>
+        <ol>
+          <% headings.forEach(function(heading) { %>
+            <li class="toc-level-<%= heading.level %>">
+              <a href="#<%- heading.id %>"><%= heading.title %></a>
+            </li>
+          <% }) %>
+        </ol>
+      </nav>
+    <% } %>
+    <div class="content">
+      <%- page.content %>
+    </div>
   </div>
 </article>
+<% if (headings.length) { %>
+  <script>
+    (function() {
+      var btn = document.querySelector('.post-toc-toggle');
+      var panel = document.getElementById('post-toc-panel');
+      if (!btn || !panel) return;
+      function setOpen(open) {
+        panel.classList.toggle('is-open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+      btn.addEventListener('click', function() {
+        setOpen(!panel.classList.contains('is-open'));
+      });
+      panel.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A') setOpen(false);
+      });
+    })();
+  </script>
+<% } %>
