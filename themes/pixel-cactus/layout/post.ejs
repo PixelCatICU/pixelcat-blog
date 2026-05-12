@@ -10,6 +10,29 @@
     <% } %>
     <time datetime="<%= date_xml(page.date) %>"><%= date(page.date, 'YYYY-MM-DD') %></time>
   </header>
+  <%
+    var headings = [];
+    (page.content || '').replace(/<h([23]) id="([^"]+)">[\s\S]*?<a[^>]*title="([^"]*)"[^>]*><\/a>[\s\S]*?<\/h\1>/g, function(match, level, id, title) {
+      headings.push({
+        level: level,
+        id: id,
+        title: title
+      });
+      return match;
+    });
+  %>
+  <% if (headings.length) { %>
+    <nav class="post-toc" aria-label="文章目录">
+      <strong>目录</strong>
+      <ol>
+        <% headings.forEach(function(heading) { %>
+          <li class="toc-level-<%= heading.level %>">
+            <a href="#<%- heading.id %>"><%= heading.title %></a>
+          </li>
+        <% }) %>
+      </ol>
+    </nav>
+  <% } %>
   <div class="content">
     <%- page.content %>
   </div>
