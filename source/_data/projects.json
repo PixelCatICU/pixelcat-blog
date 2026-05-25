@@ -1,5 +1,15 @@
 [
   {
+    "name": "PixelCat Pop macOS 工具箱",
+    "url": "/posts/pixelcat-pop-macos-toolbox-guide/",
+    "desc": "原生 macOS 菜单栏工具箱，集成双击 Command-C 翻译、截图标注、屏幕录制、应用清理和可选系统监控。"
+  },
+  {
+    "name": "PixelCat Pop 截图与录屏",
+    "url": "/posts/pixelcat-pop-macos-toolbox-guide/#五、截图标注：区域选择、窗口吸附和马赛克",
+    "desc": "使用窗口吸附或自由选区完成截图标注，并复用同一选择体验录制 HEVC MP4。"
+  },
+  {
     "name": "PixelCat Proxy 安装指南",
     "url": "/posts/pixelcat-proxy-install-guide/",
     "desc": "从 SSH 连接服务器开始，一步步完成域名解析、防火墙放行、脚本安装和客户端配置。"
@@ -10,13 +20,8 @@
     "desc": "走 443/tcp，使用带 naive 分支 forward_proxy 插件的 Caddy，自动申请真实 HTTPS 证书并展示正常伪装站。"
   },
   {
-    "name": "Hysteria2 抗封锁方案",
+    "name": "Hysteria2 抗干扰方案",
     "url": "/posts/pixelcat-proxy-install-guide/#三、Hysteria2-的优势：UDP、端口跳跃和抗封锁",
     "desc": "基于 QUIC/UDP，支持端口跳跃，适合弱网、QoS 明显和 TCP 容易被干扰的环境。"
-  },
-  {
-    "name": "节点诊断工具",
-    "url": "/posts/pixelcat-proxy-install-guide/#十四、节点诊断工具",
-    "desc": "内置 IP 质量检测、流媒体解锁检测、网络质量和回程检测，方便部署后直接体检线路。"
   }
 ]

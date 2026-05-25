@@ -1,7 +1,7 @@
 title: 像素猫 - 科学上网ICU
-subtitle: 网络急救、隐私自护与跨境访问笔记
-description: 一个中文教程博客，整理科学上网、网络诊断、节点维护与隐私安全的实用经验。
-keywords: 科学上网, 网络诊断, 代理, 隐私安全, 像素猫
+subtitle: 网络工具、Mac 工具箱与跨境访问笔记
+description: PixelCat ICU 中文教程博客，整理 PixelCat Pop、PixelCat Proxy、macOS 工具箱、科学上网、网络诊断、节点维护与隐私安全的实用经验。
+keywords: PixelCat Pop, PixelCat Proxy, macOS 工具箱, 菜单栏工具, 科学上网, 网络诊断, 代理, 隐私安全, 像素猫
 author: PixelCat ICU
 language: zh-CN
 timezone: Asia/Shanghai
@@ -93,8 +93,8 @@ theme_config:
   profile:
     avatar: /images/pixel-cat.svg
     intro_lines:
-      - 这里是「像素猫 - 科学上网ICU」YouTube频道的博客 🐱
-      - 主要分享科学上网、网络工具、代理协议、服务器搭建、节点部署、路由分流、隐私安全和实用软件教程。🚀
+      - 这里是「像素猫 - 科学上网ICU」YouTube频道的博客。
+      - 主要分享 PixelCat Pop、PixelCat Proxy、macOS 工具、科学上网、代理协议、服务器搭建、节点部署、路由分流和隐私安全教程。
   social_links:
     -
       label: YouTube
