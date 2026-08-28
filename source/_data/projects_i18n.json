@@ -1,0 +1,36 @@
+{
+  "ru": [
+    {
+      "name": "Руководство по установке PixelCat Proxy",
+      "url": "/ru/posts/pixelcat-proxy-install-guide/",
+      "desc": "Пошаговая настройка домена, брандмауэра, NaiveProxy, Hysteria2 и клиентских подключений."
+    },
+    {
+      "name": "Установка NaiveProxy",
+      "url": "/ru/posts/pixelcat-proxy-install-guide/#Установка-NaiveProxy",
+      "desc": "Прокси через HTTPS на порту 443 с Caddy, автоматическим TLS-сертификатом и обычной веб-страницей."
+    },
+    {
+      "name": "Установка Hysteria2",
+      "url": "/ru/posts/pixelcat-proxy-install-guide/#Установка-Hysteria2",
+      "desc": "Подключение по QUIC/UDP с поддержкой смены портов для нестабильных сетей и ограничений TCP."
+    }
+  ],
+  "fa": [
+    {
+      "name": "راهنمای نصب PixelCat Proxy",
+      "url": "/fa/posts/pixelcat-proxy-install-guide/",
+      "desc": "راه‌اندازی مرحله‌به‌مرحله دامنه، فایروال، NaiveProxy، Hysteria2 و اتصال کلاینت‌ها."
+    },
+    {
+      "name": "نصب NaiveProxy",
+      "url": "/fa/posts/pixelcat-proxy-install-guide/#نصب-NaiveProxy",
+      "desc": "پراکسی HTTPS روی پورت ۴۴۳ با Caddy، گواهی خودکار TLS و یک صفحه وب عادی."
+    },
+    {
+      "name": "نصب Hysteria2",
+      "url": "/fa/posts/pixelcat-proxy-install-guide/#نصب-Hysteria2",
+      "desc": "اتصال QUIC/UDP با پشتیبانی از جابه‌جایی پورت برای شبکه‌های ناپایدار و محدودیت‌های TCP."
+    }
+  ]
+}

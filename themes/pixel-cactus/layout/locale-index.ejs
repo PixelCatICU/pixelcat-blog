@@ -19,3 +19,20 @@
     <% }) %>
   </ul>
 </section>
+
+<%
+  var localizedProjects = site.data.projects_i18n && site.data.projects_i18n[locale];
+%>
+<% if (localizedProjects && localizedProjects.length) { %>
+  <section class="section">
+    <h2><%= dict.topics %></h2>
+    <ul class="project-list">
+      <% localizedProjects.forEach(function(project) { %>
+        <li>
+          <a href="<%- url_for(project.url) %>"><%= project.name %>:</a>
+          <span><%= project.desc %></span>
+        </li>
+      <% }) %>
+    </ul>
+  </section>
+<% } %>
