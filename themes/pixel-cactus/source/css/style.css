@@ -78,10 +78,17 @@ a:hover {
 
 .header-actions {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   align-items: center;
   justify-content: flex-end;
   flex-wrap: wrap;
+}
+
+.display-controls {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 12px;
 }
 
 .site-nav {

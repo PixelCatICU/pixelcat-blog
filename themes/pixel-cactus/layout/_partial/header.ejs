@@ -24,11 +24,13 @@
       <a href="<%- url_for(localeRoot + 'search/') %>"><%= dict.search %></a>
       <a href="<%- url_for(localeRoot + 'about/') %>"><%= dict.about %></a>
     </nav>
-    <nav class="language-switcher" aria-label="Language">
-      <a class="<%= locale === 'zh-CN' ? 'active' : '' %>" href="<%- url_for(translations['zh-CN'] || '/') %>" hreflang="zh-CN">中文</a>
-      <a class="<%= locale === 'ru' ? 'active' : '' %>" href="<%- url_for(translations.ru || '/ru/') %>" hreflang="ru">RU</a>
-      <a class="<%= locale === 'fa' ? 'active' : '' %>" href="<%- url_for(translations.fa || '/fa/') %>" hreflang="fa">FA</a>
-    </nav>
-    <button class="theme-toggle" type="button" data-theme-toggle>Light</button>
+    <div class="display-controls">
+      <nav class="language-switcher" aria-label="Language">
+        <a class="<%= locale === 'zh-CN' ? 'active' : '' %>" href="<%- url_for(translations['zh-CN'] || '/') %>" hreflang="zh-CN">中文</a>
+        <a class="<%= locale === 'ru' ? 'active' : '' %>" href="<%- url_for(translations.ru || '/ru/') %>" hreflang="ru">RU</a>
+        <a class="<%= locale === 'fa' ? 'active' : '' %>" href="<%- url_for(translations.fa || '/fa/') %>" hreflang="fa">FA</a>
+      </nav>
+      <button class="theme-toggle" type="button" data-theme-toggle>Light</button>
+    </div>
   </div>
 </header>
