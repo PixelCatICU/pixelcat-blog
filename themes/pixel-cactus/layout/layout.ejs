@@ -5,6 +5,30 @@
 <body class="<%= theme.colorscheme || 'dark' %>">
   <script>
     (() => {
+      if (window.location.pathname !== '/') return;
+
+      const normalizeLanguage = (value) => {
+        const language = String(value || '').toLowerCase();
+        if (language === 'ru' || language.startsWith('ru-')) return 'ru';
+        if (language === 'fa' || language.startsWith('fa-')) return 'fa';
+        return 'zh-CN';
+      };
+
+      let savedLanguage = '';
+      try { savedLanguage = localStorage.getItem('pixelcat-language') || ''; } catch (_) {}
+      const browserLanguages = Array.isArray(navigator.languages) && navigator.languages.length
+        ? navigator.languages
+        : [navigator.language];
+      const preferredLanguage = savedLanguage || browserLanguages
+        .map(normalizeLanguage)
+        .find((language) => language === 'ru' || language === 'fa') || 'zh-CN';
+      const target = preferredLanguage === 'ru' ? '/ru/' : (preferredLanguage === 'fa' ? '/fa/' : '/');
+
+      if (target !== window.location.pathname) window.location.replace(target);
+    })();
+  </script>
+  <script>
+    (() => {
       const savedTheme = localStorage.getItem('pixelcat-theme');
       if (savedTheme === 'dark' || savedTheme === 'light') {
         document.body.className = savedTheme;
@@ -42,6 +66,18 @@
       });
 
       updateButton();
+    })();
+  </script>
+  <script>
+    (() => {
+      const select = document.querySelector('[data-language-select]');
+      if (!select) return;
+
+      select.addEventListener('change', () => {
+        const option = select.options[select.selectedIndex];
+        try { localStorage.setItem('pixelcat-language', option.dataset.lang); } catch (_) {}
+        window.location.assign(option.value);
+      });
     })();
   </script>
   <script>

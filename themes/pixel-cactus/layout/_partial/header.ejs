@@ -25,11 +25,14 @@
       <a href="<%- url_for(localeRoot + 'about/') %>"><%= dict.about %></a>
     </nav>
     <div class="display-controls">
-      <nav class="language-switcher" aria-label="Language">
-        <a class="<%= locale === 'zh-CN' ? 'active' : '' %>" href="<%- url_for(translations['zh-CN'] || '/') %>" hreflang="zh-CN">中文</a>
-        <a class="<%= locale === 'ru' ? 'active' : '' %>" href="<%- url_for(translations.ru || '/ru/') %>" hreflang="ru">RU</a>
-        <a class="<%= locale === 'fa' ? 'active' : '' %>" href="<%- url_for(translations.fa || '/fa/') %>" hreflang="fa">FA</a>
-      </nav>
+      <label class="language-select-wrap">
+        <span class="visually-hidden"><%= dict.language %></span>
+        <select class="language-select" data-language-select aria-label="<%= dict.language %>">
+          <option value="<%- url_for(translations['zh-CN'] || '/') %>" data-lang="zh-CN" <%= locale === 'zh-CN' ? 'selected' : '' %>>中文</option>
+          <option value="<%- url_for(translations.ru || '/ru/') %>" data-lang="ru" <%= locale === 'ru' ? 'selected' : '' %>>Русский</option>
+          <option value="<%- url_for(translations.fa || '/fa/') %>" data-lang="fa" <%= locale === 'fa' ? 'selected' : '' %>>فارسی</option>
+        </select>
+      </label>
       <button class="theme-toggle" type="button" data-theme-toggle>Light</button>
     </div>
   </div>

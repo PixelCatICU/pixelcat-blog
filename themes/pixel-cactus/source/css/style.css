@@ -124,31 +124,39 @@ a:hover {
   border-color: var(--accent);
 }
 
-.language-switcher {
+.language-select-wrap {
   display: inline-flex;
-  align-items: stretch;
-  min-height: 32px;
-  gap: 5px;
-  padding: 3px;
+}
+
+.language-select {
+  min-width: 104px;
+  height: 32px;
+  padding: 2px 28px 2px 8px;
   border: 1px solid var(--line);
   border-radius: 4px;
   background: var(--code-bg);
-}
-
-.language-switcher a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 32px;
-  padding: 1px 6px;
-  color: var(--muted);
-  text-align: center;
+  color: var(--accent);
+  font: inherit;
   font-size: 0.8rem;
+  line-height: 1;
+  cursor: pointer;
 }
 
-.language-switcher a.active {
-  background: var(--accent);
-  color: var(--bg);
+.language-select:hover,
+.language-select:focus-visible {
+  border-color: var(--accent);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 html[dir="rtl"] .content,
