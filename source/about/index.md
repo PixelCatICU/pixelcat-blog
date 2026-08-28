@@ -1,6 +1,11 @@
 ---
 title: 关于
 date: 2026-04-29 09:00:00
+lang: zh-CN
+translations:
+  zh-CN: /about/
+  ru: /ru/about/
+  fa: /fa/about/
 ---
 
 「像素猫 - 科学上网ICU」是一个中文教程博客 🐱，关注三个方向：

@@ -2,6 +2,12 @@
 title: PixelCat Proxy 安装指南：NaiveProxy 与 Hysteria2 一键部署
 date: 2026-05-12 10:00:00
 updated: 2026-05-14 16:30:00
+lang: zh-CN
+translation_key: pixelcat-proxy-install-guide
+translations:
+  zh-CN: /posts/pixelcat-proxy-install-guide/
+  ru: /ru/posts/pixelcat-proxy-install-guide/
+  fa: /fa/posts/pixelcat-proxy-install-guide/
 description: PixelCat Proxy 一键部署教程，从 SSH 连接服务器、域名解析、防火墙放行，到安装 NaiveProxy 和 Hysteria2，并说明 HTTPS 伪装、端口跳跃、预编译 Caddy、证书复用、节点诊断工具与 GPLv3 开源协议。
 tags:
   - PixelCat Proxy
@@ -45,7 +51,7 @@ ssh root@你的服务器IP
 curl -fsSL https://raw.githubusercontent.com/PixelCatICU/pixelcat-proxy/main/install.sh | bash
 ```
 
-进入中文菜单后，先选 `1` 安装 NaiveProxy；如果还需要更强的 UDP 抗干扰能力，再选 `2` 安装 Hysteria2。
+进入菜单后先选择中文，再选 `1` 安装 NaiveProxy；如果还需要更强的 UDP 抗干扰能力，再选 `2` 安装 Hysteria2。脚本也支持俄语和波斯语，可用 `--lang ru` 或 `--lang fa` 直接指定。
 
 ## 一、先看两个协议怎么选
 
@@ -244,9 +250,17 @@ curl -fsSL https://raw.githubusercontent.com/PixelCatICU/pixelcat-proxy/main/ins
 1. 创建 `/opt/pixelcat` 目录。
 2. 下载 `PixelCatICU/pixelcat-proxy` 项目代码。
 3. 进入 `/opt/pixelcat/pixelcat-naiveproxy`。
-4. 运行 `deploy.sh` 中文菜单。
+4. 运行 `deploy.sh` 三语菜单。
 
 如果之前已经安装过，再运行同一条命令会更新项目代码并重新打开菜单。
+
+指定语言：
+
+```bash
+./deploy.sh --lang zh   # 中文
+./deploy.sh --lang ru   # Русский
+./deploy.sh --lang fa   # فارسی
+```
 
 看到菜单后，大致是这样：
 

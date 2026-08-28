@@ -1,5 +1,6 @@
 <head>
   <%
+    var pageLang = page.lang || config.language || 'zh-CN';
     var siteTitle = config.title;
     var pageTitle = page.title ? page.title + ' | ' + siteTitle : siteTitle;
     var rawDescription = page.description || page.excerpt || (page.layout === 'post' && page.content ? page.content : config.description);
@@ -50,7 +51,7 @@
       },
       publisher: publisher,
       keywords: Array.isArray(page.tags && page.tags.data) ? page.tags.data.map(function(tag) { return tag.name; }).join(', ') : keywords,
-      inLanguage: config.language || 'zh-CN',
+      inLanguage: pageLang,
       url: pageUrl
     } : {
       '@context': 'https://schema.org',
@@ -59,7 +60,7 @@
       alternateName: config.subtitle || siteTitle,
       url: full_url_for('/'),
       description: config.description,
-      inLanguage: config.language || 'zh-CN',
+      inLanguage: pageLang,
       publisher: publisher
     };
     Object.keys(schema).forEach(function(key) {
@@ -76,9 +77,12 @@
   <meta name="robots" content="index, follow">
   <title><%= pageTitle %></title>
   <link rel="canonical" href="<%- pageUrl %>">
+  <% if (page.translations) { Object.keys(page.translations).forEach(function(lang) { %>
+    <link rel="alternate" hreflang="<%= lang %>" href="<%- full_url_for(page.translations[lang]) %>">
+  <% }); } %>
   <link rel="sitemap" type="application/xml" title="Sitemap" href="<%- full_url_for('/sitemap.xml') %>">
   <link rel="icon" href="<%- url_for('/images/pixel-cat.svg') %>" type="image/svg+xml">
-  <meta property="og:locale" content="zh_CN">
+  <meta property="og:locale" content="<%= pageLang === 'ru' ? 'ru_RU' : (pageLang === 'fa' ? 'fa_IR' : 'zh_CN') %>">
   <meta property="og:site_name" content="<%= siteTitle %>">
   <meta property="og:type" content="<%= pageType %>">
   <meta property="og:title" content="<%= pageTitle %>">

@@ -1,0 +1,21 @@
+<%
+  var locale = page.lang;
+  var dict = (site.data.i18n && site.data.i18n[locale]) || site.data.i18n['zh-CN'];
+  var localizedPosts = site.posts.filter(function(post) { return post.lang === locale; }).sort('date', -1);
+%>
+<section class="hero">
+  <h1><%= dict.hero %></h1>
+  <div class="hero-intro"><p><%= dict.intro %></p></div>
+</section>
+
+<section class="section">
+  <h2><%= dict.latest %></h2>
+  <ul class="post-list">
+    <% localizedPosts.forEach(function(post) { %>
+      <li>
+        <time datetime="<%= date_xml(post.date) %>"><%= date(post.date, 'YYYY-MM-DD') %></time>
+        <a href="<%- url_for(post.path) %>"><%= post.title %></a>
+      </li>
+    <% }) %>
+  </ul>
+</section>

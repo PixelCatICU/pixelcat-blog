@@ -1,13 +1,33 @@
+<%
+  var locale = page.lang || config.language || 'zh-CN';
+  var dict = (site.data.i18n && site.data.i18n[locale]) || site.data.i18n['zh-CN'];
+  var localeRoot = locale === 'zh-CN' ? '/' : '/' + locale + '/';
+  var localizedBrand = locale === 'ru' ? 'PixelCat ICU — сетевые руководства' : (locale === 'fa' ? 'PixelCat ICU — آموزش شبکه' : config.title);
+  var translations = page.translations || {
+    'zh-CN': '/',
+    'ru': '/ru/',
+    'fa': '/fa/'
+  };
+%>
 <header class="site-header">
-  <a class="brand" href="<%- url_for('/') %>" aria-label="<%= config.title %>">
+  <a class="brand" href="<%- url_for(localeRoot) %>" aria-label="<%= config.title %>">
     <img src="<%- url_for(theme.profile.avatar) %>" alt="" class="brand-mark">
-    <span class="brand-text"><%= config.title %></span>
+    <span class="brand-text"><%= localizedBrand %></span>
   </a>
   <div class="header-actions">
-    <nav class="site-nav" aria-label="主导航">
-      <% Object.keys(theme.nav || {}).forEach(function(name) { %>
-        <a href="<%- url_for(theme.nav[name]) %>"><%= name %></a>
-      <% }) %>
+    <nav class="site-nav" aria-label="Navigation">
+      <a href="<%- url_for(localeRoot) %>"><%= dict.home %></a>
+      <% if (locale === 'zh-CN') { %>
+        <a href="<%- url_for('/archives/') %>"><%= dict.archives %></a>
+        <a href="<%- url_for('/tags/') %>"><%= dict.tags %></a>
+      <% } %>
+      <a href="<%- url_for(localeRoot + 'search/') %>"><%= dict.search %></a>
+      <a href="<%- url_for(localeRoot + 'about/') %>"><%= dict.about %></a>
+    </nav>
+    <nav class="language-switcher" aria-label="Language">
+      <a class="<%= locale === 'zh-CN' ? 'active' : '' %>" href="<%- url_for(translations['zh-CN'] || '/') %>" hreflang="zh-CN">中文</a>
+      <a class="<%= locale === 'ru' ? 'active' : '' %>" href="<%- url_for(translations.ru || '/ru/') %>" hreflang="ru">RU</a>
+      <a class="<%= locale === 'fa' ? 'active' : '' %>" href="<%- url_for(translations.fa || '/fa/') %>" hreflang="fa">FA</a>
     </nav>
     <button class="theme-toggle" type="button" data-theme-toggle>Light</button>
   </div>

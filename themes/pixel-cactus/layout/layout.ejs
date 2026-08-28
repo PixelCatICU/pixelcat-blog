@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="<%= config.language || 'zh-CN' %>">
+<% var documentLang = page.lang || config.language || 'zh-CN'; %>
+<html lang="<%= documentLang %>" dir="<%= documentLang === 'fa' ? 'rtl' : 'ltr' %>">
 <%- partial('_partial/head') %>
 <body class="<%= theme.colorscheme || 'dark' %>">
   <script>
@@ -17,13 +18,20 @@
   </main>
   <script>
     (() => {
+      const ui = <%- JSON.stringify(documentLang === 'ru' ? {
+        dark: 'Тёмная тема', light: 'Светлая тема', copy: 'Копировать', copied: 'Скопировано', failed: 'Ошибка'
+      } : (documentLang === 'fa' ? {
+        dark: 'پوسته تیره', light: 'پوسته روشن', copy: 'کپی', copied: 'کپی شد', failed: 'خطا'
+      } : {
+        dark: '切换到深色主题', light: '切换到浅色主题', copy: '复制', copied: '已复制', failed: '失败'
+      })) %>;
       const button = document.querySelector('[data-theme-toggle]');
       if (!button) return;
 
       const updateButton = () => {
         const isLight = document.body.classList.contains('light');
         button.textContent = isLight ? 'Dark' : 'Light';
-        button.setAttribute('aria-label', isLight ? '切换到深色主题' : '切换到浅色主题');
+        button.setAttribute('aria-label', isLight ? ui.dark : ui.light);
       };
 
       button.addEventListener('click', () => {
@@ -38,6 +46,13 @@
   </script>
   <script>
     (() => {
+      const ui = <%- JSON.stringify(documentLang === 'ru' ? {
+        copy: 'Копировать', copied: 'Скопировано', failed: 'Ошибка'
+      } : (documentLang === 'fa' ? {
+        copy: 'کپی', copied: 'کپی شد', failed: 'خطا'
+      } : {
+        copy: '复制', copied: '已复制', failed: '失败'
+      })) %>;
       const getCodeText = (fig) => {
         const lines = fig.querySelectorAll('td.code .line');
         if (lines.length) {
@@ -66,8 +81,8 @@
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'code-copy';
-        btn.setAttribute('aria-label', '复制代码');
-        btn.textContent = '复制';
+        btn.setAttribute('aria-label', ui.copy);
+        btn.textContent = ui.copy;
         fig.appendChild(btn);
 
         let resetTimer = 0;
@@ -80,11 +95,11 @@
           } catch (_) {
             ok = fallbackCopy(text);
           }
-          btn.textContent = ok ? '已复制' : '失败';
+          btn.textContent = ok ? ui.copied : ui.failed;
           btn.classList.toggle('is-copied', ok);
           window.clearTimeout(resetTimer);
           resetTimer = window.setTimeout(() => {
-            btn.textContent = '复制';
+            btn.textContent = ui.copy;
             btn.classList.remove('is-copied');
           }, 1500);
         });

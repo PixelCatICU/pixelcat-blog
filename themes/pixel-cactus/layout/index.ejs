@@ -23,7 +23,7 @@
   <ul class="post-list">
     <%
       var limit = theme.posts_overview && theme.posts_overview.show_all_posts ? site.posts.length : ((theme.posts_overview && theme.posts_overview.post_count) || 5);
-      site.posts.sort('date', -1).limit(limit).forEach(function(post) {
+      site.posts.filter(function(post) { return !post.lang || post.lang === 'zh-CN'; }).sort('date', -1).limit(limit).forEach(function(post) {
     %>
       <li>
         <time datetime="<%= date_xml(post.date) %>"><%= date(post.date, 'YYYY-MM-DD') %></time>

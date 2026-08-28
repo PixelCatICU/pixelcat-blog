@@ -4,13 +4,18 @@
 
 # PixelCat Blog
 
-「像素猫 - 科学上网ICU」的中文教程站点，使用 Hexo 7 构建，当前主要承载 PixelCat Proxy 安装指南。
+**中文** | [Русский](README.ru.md) | [فارسی](README.fa.md)
+
+「像素猫 - 科学上网ICU」的三语教程站点，使用 Hexo 7 构建，支持中文、俄语和波斯语，当前主要承载 PixelCat Proxy 安装指南。
 
 站点内容聚焦 PixelCat Proxy 一键部署脚本，覆盖 NaiveProxy、Hysteria2、服务器准备、域名解析、防火墙放行、客户端配置、节点诊断和常见故障排查。
 
 ## 当前内容
 
 - 安装指南：`source/_posts/pixelcat-proxy-install-guide.md`
+- 俄语安装指南：`source/_posts/pixelcat-proxy-install-guide.ru.md`
+- 波斯语安装指南：`source/_posts/pixelcat-proxy-install-guide.fa.md`
+- 三语界面词典：`source/_data/i18n.json`
 - 首页精选专题：`source/_data/projects.json`
 - 关于页面：`source/about/index.md`
 - 搜索页面：`source/search/index.md`
@@ -93,6 +98,17 @@ source/images/                 站点图片资源
 themes/pixel-cactus/layout/    主题模板
 themes/pixel-cactus/source/    主题静态资源
 public/                        Hexo 生成结果
+```
+
+三语页面路径：
+
+```text
+/                                      中文首页
+/ru/                                   俄语首页
+/fa/                                   波斯语首页（RTL）
+/posts/pixelcat-proxy-install-guide/   中文指南
+/ru/posts/pixelcat-proxy-install-guide/ 俄语指南
+/fa/posts/pixelcat-proxy-install-guide/ 波斯语指南
 ```
 
 ## 部署到 Cloudflare Pages

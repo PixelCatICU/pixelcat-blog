@@ -1,9 +1,8 @@
 ---
-title: 搜索
 layout: search
-type: search
-date: 2026-04-29 09:00:00
-lang: zh-CN
+title: جستجو
+lang: fa
+permalink: /fa/search/
 translations:
   zh-CN: /search/
   ru: /ru/search/

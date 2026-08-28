@@ -1,4 +1,8 @@
 <article class="post">
+  <%
+    var postLocale = page.lang || config.language || 'zh-CN';
+    var postDict = (site.data.i18n && site.data.i18n[postLocale]) || site.data.i18n['zh-CN'];
+  %>
   <header class="post-header">
     <h1><%= page.title %></h1>
     <% if (page.tags && page.tags.length) { %>
@@ -23,11 +27,11 @@
   %>
   <div class="post-layout">
     <% if (headings.length) { %>
-      <button class="post-toc-toggle" type="button" aria-controls="post-toc-panel" aria-expanded="false" aria-label="打开目录">
+      <button class="post-toc-toggle" type="button" aria-controls="post-toc-panel" aria-expanded="false" aria-label="<%= postDict.openToc %>">
         <span aria-hidden="true">≡</span>
       </button>
       <nav id="post-toc-panel" class="post-toc" aria-label="文章目录">
-        <strong>目录</strong>
+        <strong><%= postDict.toc %></strong>
         <ol>
           <% headings.forEach(function(heading) { %>
             <li class="toc-level-<%= heading.level %>">

@@ -1,9 +1,22 @@
+<%
+  var searchLocale = page.lang || config.language || 'zh-CN';
+  var searchText = searchLocale === 'ru' ? {
+    title: 'Поиск', placeholder: 'Введите ключевое слово', loading: 'Загрузка поискового индекса...',
+    start: 'Введите ключевое слово для поиска.', empty: 'Статьи не найдены.', found: 'Найдено статей: ', failed: 'Не удалось загрузить поисковый индекс.'
+  } : (searchLocale === 'fa' ? {
+    title: 'جستجو', placeholder: 'کلیدواژه را وارد کنید', loading: 'در حال بارگذاری فهرست جستجو...',
+    start: 'برای جستجو یک کلیدواژه وارد کنید.', empty: 'نوشته‌ای پیدا نشد.', found: 'تعداد نوشته‌های پیدا شده: ', failed: 'بارگذاری فهرست جستجو ناموفق بود.'
+  } : {
+    title: '搜索', placeholder: '输入关键词', loading: '正在加载搜索索引...',
+    start: '输入关键词开始搜索。', empty: '没有找到相关文章。', found: '找到文章：', failed: '搜索索引加载失败，请刷新页面重试。'
+  });
+%>
 <section class="section">
-  <h1>搜索</h1>
+  <h1><%= searchText.title %></h1>
   <div class="search-box">
-    <input id="search-input" type="search" placeholder="输入关键词，例如 PixelCat Pop、截图标注、录屏、PixelCat Proxy、NaiveProxy" autocomplete="off">
+    <input id="search-input" type="search" placeholder="<%= searchText.placeholder %>" autocomplete="off">
   </div>
-  <p id="search-status" class="search-status">正在加载搜索索引...</p>
+  <p id="search-status" class="search-status"><%= searchText.loading %></p>
   <ul id="search-results" class="post-list"></ul>
 </section>
 <script>
@@ -13,6 +26,8 @@
     const status = document.getElementById('search-status');
     let entries = [];
     let loaded = false;
+    const labels = <%- JSON.stringify(searchText) %>;
+    const locale = <%- JSON.stringify(searchLocale) %>;
 
     const getText = (node, selector) => {
       const target = node.querySelector(selector);
@@ -30,12 +45,12 @@
       results.innerHTML = '';
 
       if (!loaded) {
-        status.textContent = '正在加载搜索索引...';
+        status.textContent = labels.loading;
         return;
       }
 
       if (!keyword) {
-        status.textContent = '输入关键词开始搜索。';
+        status.textContent = labels.start;
         return;
       }
 
@@ -44,11 +59,11 @@
         .slice(0, 20);
 
       if (!matched.length) {
-        status.textContent = '没有找到相关文章。';
+        status.textContent = labels.empty;
         return;
       }
 
-      status.textContent = `找到 ${matched.length} 篇相关文章`;
+      status.textContent = `${labels.found}${matched.length}`;
       matched.forEach((entry) => {
         const li = document.createElement('li');
         const time = document.createElement('time');
@@ -79,20 +94,22 @@
           const title = getText(entry, 'title');
           const url = getText(entry, 'url') || entry.querySelector('link')?.getAttribute('href') || '#';
           const content = stripHtml(getText(entry, 'content'));
+          const entryLang = entry.getAttribute('lang') || '';
           return {
             title,
             url,
             tags,
+            lang: entryLang,
             searchText: `${title} ${tags} ${content}`.toLowerCase()
           };
-        });
+        }).filter((entry) => !entry.lang || entry.lang === locale);
         loaded = true;
         render();
       })
       .catch(() => {
         loaded = true;
         entries = [];
-        status.textContent = '搜索索引加载失败，请刷新页面重试。';
+        status.textContent = labels.failed;
       });
   })();
 </script>
